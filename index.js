@@ -10,11 +10,11 @@ const main = async () =>
 
     try{
         const productpath = getProductPath();
-        const projectdir = core.getInput('projectDir',{required: true});
-        const suite  = core.getInput('suite',{required: true});
+        const projectdir = core.getInput('projectDirectory',{required: true});
+        const suite  = core.getInput('scriptName',{required: true});
         var logformat  = core.getInput('logFormat',{required: false});
-        const userargs  = core.getInput('userArgs',{required: false});
-        const itercount  = core.getInput('iterCount',{required: false});
+        const userargs  = core.getInput('userArguments',{required: false});
+        const itercount  = core.getInput('iterationCount',{required: false});
 		if(!logformat) {
 			logformat = "Default";
 		}
