@@ -14,39 +14,21 @@ This action enables you to run HCL OneTest UI tests.
 ```yaml
 name: HCL OneTest UI
 
-on:
-    workflow_dispatch:
-        inputs:
-            projectDir:
-                description: 'Project Directory'
-                required: true
-            suite:
-                description: 'Test Suite Name'
-                required: true
-            logFormat:
-                description: 'Log Format'
-                required: false
-            userArgs:
-                description: 'User Arguments'
-                required: false
-            iterCount:
-                description: 'Iteration Count'
-                required: false
+on: workflow_dispatch
 
 jobs:
-
     UI-Action:
         runs-on: self-hosted
         name: HCL OneTest UI
         steps:
          - name: Execute Test
-           uses: SonaHJ/TraditionalUIAction@main
+           uses: anuraag-k/FunctionalTestAction@main
            with:
-            projectDir: '${{ github.event.inputs.projectDir }}'
-            suite: '${{ github.event.inputs.suite }}'
-            logFormat: '${{ github.event.inputs.logFormat }}'
-            userArgs: '${{ github.event.inputs.userArgs }}'
-            iterCount: '${{ github.event.inputs.iterCount }}'
+            projectDirectory: 
+            scriptName: 
+            logFormat: 
+            iterationCount: 
+            userArguments:
 
 ```
 5. Push it into the main branch
@@ -61,11 +43,11 @@ jobs:
 
 ## Inputs
 
-### `projectDir`
+### `projectDirectory`
 
 **Required** Fully qualified path to the HCL OneTest UI project directory.
 
-### `suite`
+### `scriptName`
 
 **Required** Name of the script to be executed without the extension. For eg., Script1 or TestFolder.Script1 in case Script1 is in a folder named TestFolder.
 
@@ -73,9 +55,9 @@ jobs:
 
 **Optional** Format of script execution logs. Choose from Default, none, json, xml, html, text, and TPTP.
 
-### `userArgs`
+### `userArguments`
 
 **Optional** Additional playback arguments, if any. If there are multiple arguments, you must enclose each argument within double quotes and separate the arguments by providing a space between them.
 
-### `iterCount`
+### `iterationCount`
 **Optional** Number of dataset iterations to be run.
