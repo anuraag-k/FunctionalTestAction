@@ -12,5 +12,5 @@ jobs:
            with:
             projectDir: C:\Users\anuraag.k\HCL\hclonetest\workspace\FT1
             suite: Script1
-            logFormat: json
-            itercount: 2
+            logFormat: xml
+            itercount: 1
