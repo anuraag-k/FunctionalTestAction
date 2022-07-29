@@ -14,3 +14,4 @@ jobs:
             scriptName: Script2
             logFormat: xml
             iterationCount: 1
+            userArguments: "a" "b"
