@@ -26,8 +26,8 @@ jobs:
            with:
             projectDirectory: 
             scriptName: 
-            logFormat: 
-            iterationCount: 
+            iterationCount:
+            logFormat:  
             userArguments:
 
 ```
@@ -51,6 +51,9 @@ jobs:
 
 **Required** Name of the script to be executed without the extension. For eg., Script1 or TestFolder.Script1 in case Script1 is in a folder named TestFolder.
 
+### `iterationCount`
+**Optional** Number of dataset iterations to be run.
+
 ### `logFormat`
 
 **Optional** Format of script execution logs. Choose from Default, none, json, xml, html, text, and TPTP.
@@ -59,5 +62,4 @@ jobs:
 
 **Optional** Additional playback arguments, if any. If there are multiple arguments, you must enclose each argument within double quotes and separate the arguments by providing a space between them.
 
-### `iterationCount`
-**Optional** Number of dataset iterations to be run.
+
