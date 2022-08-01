@@ -11,6 +11,7 @@ jobs:
            uses: anuraag-k/FunctionalTestAction@main
            with:
             projectDirectory: C:\Users\anuraag.k\HCL\hclonetest\workspace\FT1
-            scriptName: Script2
-            logFormat: xml
-            iterationCount: 1
+            scriptName: Script1
+            iterationCount:           
+            logFormat: 
+            userArguments:
