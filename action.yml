@@ -7,15 +7,16 @@ inputs:
   scriptName:
     description: 'Name of the script to be executed without the extension. For eg., Script1 or TestFolder.Script1 in case Script1 is in a folder named TestFolder.'
     required: true
+  iterationCount:
+    description: 'The number of Dataset iterations to be run.'
+    required: false 
   logFormat:
     description: 'The format of the script logs, For Example XML, HTML'
     required: false
   userArguments:
     description: 'Additional playback arguments, if any.'
     required: false
-  iterationCount:
-    description: 'The number of Dataset iterations to be run.'
-    required: false      
+     
 runs:
   using: 'node16'
   main: 'dist/index.js'
