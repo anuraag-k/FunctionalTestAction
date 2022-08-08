@@ -88,11 +88,12 @@ const main = async () => {
             if (fs.existsSync(fResultFile)) {
                 var verdictRegex = /--VERDICT=(INCONCLUSIVE|ERROR|PASS|FAIL).*/
                 var serverRegex = /--PUBLISH_URL=(.*)/;
-                var reportRegex = /--REPORT=(.*)[|]--URL=(.*)/;
+                var publishedResultRegex = /--REMOTE_RESULT_UI=(.*)/;
                 var reports = {};
                 var isVerdictSet = false;
                 var verdict;
-                var reportSet = false;
+                var isPublishedResultSet = false;
+                var publishedResult;
                 var data = fs.readFileSync(fResultFile, 'utf-8').split('\n');
                 data.forEach(line => {
                     if (!isVerdictSet && verdictRegex.test(line)) {
@@ -104,10 +105,10 @@ const main = async () => {
                             core.setFailed("Test Result is: FAIL");
                         }
                     }
-                    else if (reportRegex.test(line)) {
-                        var reps = reportRegex.exec(line);
-                        reports[reps[1]] = reps[2];
-                        reportSet = true;
+                    else if (!isPublishedResultSet && publishedResultRegex.test(line)) {
+                        publishedResult = publishedResultRegex.exec(line);
+                        console.log("Published Result : " + publishedResult[1]);
+                        isPublishedResultSet = true;
                     }
                 });
 
@@ -121,7 +122,6 @@ const main = async () => {
                 core.setFailed("Test Result is: FAIL");
             }
         }
-
     }
     catch (error) {
         core.setFailed(error.message);
