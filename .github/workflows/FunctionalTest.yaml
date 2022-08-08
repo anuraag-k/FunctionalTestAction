@@ -10,8 +10,8 @@ jobs:
          - name: Execute Test
            uses: anuraag-k/FunctionalTestAction@main
            with:
-            projectDirectory: C:\Users\anuraag.k\HCL\hclonetest\workspace\FT1
-            scriptName: Script10
+            projectDirectory: 
+            scriptName: 
             iterationCount:           
             logFormat: 
             userArguments:
