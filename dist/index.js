@@ -9610,14 +9610,45 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+// ESM COMPAT FLAG
+__nccwpck_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./node_modules/uuid/dist/index.js
+var dist = __nccwpck_require__(2618);
+;// CONCATENATED MODULE: ./node_modules/uuid/wrapper.mjs
+
+const v1 = dist.v1;
+const v3 = dist.v3;
+const v4 = dist.v4;
+const v5 = dist.v5;
+const NIL = dist.NIL;
+const version = dist.version;
+const validate = dist.validate;
+const stringify = dist.stringify;
+const parse = dist.parse;
+
+;// CONCATENATED MODULE: ./index.js
+
 const core = __nccwpck_require__(6874);
 const github = __nccwpck_require__(1000);
 const path = __nccwpck_require__(1017);
@@ -9668,7 +9699,7 @@ const main = async () => {
         }
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, suite + '.ps1');
+        let filePath = path.join(tempDir, v4() + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
