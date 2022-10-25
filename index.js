@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 const core = require('@actions/core');
 const github = require('@actions/github');
 const path = require("path");
@@ -16,7 +15,6 @@ const main = async () => {
         var logformat = core.getInput('logFormat', { required: false });
         const userargs = core.getInput('userArguments', { required: false });
         const itercount = core.getInput('iterationCount', { required: false });
-        var script;
         if (!logformat) {
             logformat = "Default";
         }
@@ -50,7 +48,7 @@ const main = async () => {
         }
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, uuidv4() + '.ps1');
+        let filePath = path.join(tempDir, suite + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
