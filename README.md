@@ -1,15 +1,21 @@
-## HCL OneTest UI
+## HCL OneTest UI GitHub Action
+HCL OneTest provides software testing tools to support a DevOps approach: API testing, functional testing, UI testing, performance testing and service virtualization. It helps you automate and run tests earlier and more frequently to discover errors sooner - when they are less costly to fix.
 
-This action enables you to run HCL OneTest UI tests.
+This action enables the ability to run tests and compount tests from HCL OneTest UI projects on self hosted runners.
 
-## Pre requisites
+## Usage
 
-1. Create a github repository
-2. Create a folder named ".github/workflows" in the root of the repository
-3. Create a .yml file with any name inside the ".github/workflows" folder
-4. Then you need to code thta yml file as mentioned in the following example.
+### Prerequisites
 
-## Example usage
+Configure a self hosted runner on a suitable machine
+1. The host machine will need a licensed copy of HCL OneTest UI and the UI projects containing the tests you wish to run.
+2. [Add a self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners) at an appropriate level, ensure you have configured network access.
+3. If you are using more than one runner [assign it a suitable label](https://docs.github.com/en/actions/hosting-your-own-runners/using-labels-with-self-hosted-runners) and note this for later.
+
+### Setup
+In the repository you want to apply the action to
+1. Create a folder named ".github/workflows" in the root.
+2. Create a .yml file with any name, inside the ".github/workflows" folder based on the following example content:
 
 ```yaml
 name: HCL OneTest UI
@@ -22,44 +28,29 @@ jobs:
         name: HCL OneTest UI
         steps:
          - name: Execute Test
-           uses: anuraag-k/FunctionalTestAction@main
+           uses: HCL-TECH-SOFTWARE/onetest-ui-action@main
            with:
-            projectDirectory: 
-            scriptName: 
-            iterationCount:
-            logFormat:  
-            userArguments:
-
+            projectDirectory:  <C:\Data\MyProject>
+            scriptName: <MyScript>
 ```
-5. Push it into the main branch
-6. To configure agent:
-    1. Go to settings (Repo).
-    2. Select action -> runner.
-    3. Click Create self-hosted runner, follow the download and configure instruction
 
-7. Go to the Actions section in the repository and select the workflow.
-8. Click the Run workflow dropdown and the list of input text boxes are displayed.
-9. After entering the input values click on run workflow button
+3. Update the parameterized items to refer to your project and tests (see parameter details below).
+4. If you have more than one runner configured, then use its label as the argument for **runs-on**.
+5. Push your updated yml file to the repository.
+6. Go to the Actions section in the repository and select the workflow.
+7. Click the Run workflow dropdown and the list of input boxes get displayed.
 
-## Inputs
+As an alternative to having all of the test projects pre-configured on the runner machine, users could leverage other actions within the workflow to pull down the latest copies. 
 
-### `projectDirectory`
+### Required Parameters
 
-**Required** Fully qualified path to the HCL OneTest UI project directory.
+- **projectDirectory** Fully qualified path to the HCL OneTest UI project directory.
+- **scriptName** Name of the script to be executed without the extension. For eg., Script1 or TestFolder.Script1 in case Script1 is in a folder named TestFolder.
 
-### `scriptName`
+### Optional Parameters
+- **iterationCount** Number of dataset iterations to be run.
+- **logFormat** Format of script execution logs. Choose from Default, none, json, xml, html, text, and TPTP.
+- **userArguments** Additional playback arguments, if any. If there are multiple arguments, you must enclose each argument within double quotes and separate the arguments by providing a space between them.
 
-**Required** Name of the script to be executed without the extension. For eg., Script1 or TestFolder.Script1 in case Script1 is in a folder named TestFolder.
-
-### `iterationCount`
-**Optional** Number of dataset iterations to be run.
-
-### `logFormat`
-
-**Optional** Format of script execution logs. Choose from Default, none, json, xml, html, text, and TPTP.
-
-### `userArguments`
-
-**Optional** Additional playback arguments, if any. If there are multiple arguments, you must enclose each argument within double quotes and separate the arguments by providing a space between them.
-
-
+## Troubleshooting
+- **No runner available:** Check that the runner still exists in GitHub, if the local agent has not connected to GitHub for a period of 14 days then it will be automatically removed.

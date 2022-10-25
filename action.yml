@@ -1,5 +1,8 @@
-name: 'HCL OneTest UI'
-description: 'HCL OneTest UI'
+name: 'HCL OneTest UI GitHub Action'
+description: 'Execute HCL OneTest UI based functional tests and compound tests from GitHub Actions workflows.'
+branding:
+  icon: 'check-square'
+  color: 'purple'
 inputs:
   projectDirectory:
     description: 'The fully qualified path to _prop_task_ui_productName_ project directory.'
