@@ -16,6 +16,7 @@ const main = async () => {
         var logformat = core.getInput('logFormat', { required: false });
         const userargs = core.getInput('userArguments', { required: false });
         const itercount = core.getInput('iterationCount', { required: false });
+        var script;
         if (!logformat) {
             logformat = "Default";
         }
